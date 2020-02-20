@@ -1,0 +1,9 @@
+.Image {
+    border: 2px solid white;
+    transition: all 0.1s;
+    box-shadow: 4px 4px 5px black;
+}
+
+.Card :hover {
+    transform: scale(1.02);
+}

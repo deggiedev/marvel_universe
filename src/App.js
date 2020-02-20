@@ -4,7 +4,7 @@ import MainContainer from './containers/MainContainer'
 class App extends Component {
 
 getCharacters = () => {
-  return fetch('http://gateway.marvel.com/v1/public/characters?ts=thesoer&apikey=50ad78c230f43edadebb63d4fe32f1f7&hash=b9d2938b56f1f57559b592329b254b28')
+  return fetch('http://gateway.marvel.com/v1/public/characters?limit=100&ts=thesoer&apikey=50ad78c230f43edadebb63d4fe32f1f7&hash=b9d2938b56f1f57559b592329b254b28')
   .then(resp => resp.json())
 }
 
