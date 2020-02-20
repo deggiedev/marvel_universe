@@ -6,7 +6,7 @@ import './CharacterList.css'
 const CharacterList = (props) => {
     return (
         <Flex flexWrap='wrap' mx={-2}>
-            {props.heros.map((hero, key) => <CardComponent key={key} hero={hero} />)}
+            {props.heros.map((hero, key) => !hero.thumbnail.path.includes('image_not_available') ? <CardComponent addDefaultSrc={props.addDefaultSrc} key={key} hero={hero} /> : null)}
         </Flex>
     )
 }

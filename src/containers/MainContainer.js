@@ -7,7 +7,7 @@ const MainContainer = (props) => {
     return (
         <>
             <Header />
-            <CharacterList className="CharacterList" heros={props.heros}/>
+            <CharacterList addDefaultSrc={props.addDefaultSrc} className="CharacterList" heros={props.heros}/>
         </>
     )
 }

@@ -6,7 +6,7 @@ const CardComponent = (props) => {
     return (
         <Box px={2} py={2} width={1/4}>
             <Card className="Card">
-                <Image className="Image" src={`${props.hero.thumbnail.path}/standard_fantastic.jpg`} />
+                <Image onError={props.addDefaultSrc} className="Image" src={`${props.hero.thumbnail.path}/standard_fantastic.jpg`}/>
                 <Heading fontFamily='Masked Marvel'>{props.hero.name}</Heading>
             </Card>
         </Box>

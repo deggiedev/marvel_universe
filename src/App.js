@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MainContainer from './containers/MainContainer'
+import './images/Marvel.png'
 
 class App extends Component {
 
@@ -17,9 +18,13 @@ state = {
   heros: []
 }
 
+//addDefaultSrc(event) {
+//  event.target.src = 'Marvel.png'
+//}
+
   render() {
     return (
-      <MainContainer heros={this.state.heros} />
+      <MainContainer addDefaultSrc={this.addDefaultSrc} heros={this.state.heros} />
     )
   }
 
