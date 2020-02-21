@@ -8,8 +8,8 @@ const MainContainer = (props) => {
     return (
         <>
             <Header />
-            <SearchBox />
-            <CharacterList handleImageError={props.handleImageError} className="CharacterList" heros={props.heros}/>
+            <SearchBox handleSearchTerm={props.handleSearchTerm} />
+            <CharacterList handleSearchTerm={props.handleSearchTerm}  handleImageError={props.handleImageError} className="CharacterList" heros={props.heros}/>
         </>
     )
 }
