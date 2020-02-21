@@ -14,16 +14,21 @@ componentDidMount() {
 }
 
 state = {
-  heros: []
+  heros: [],
+  searchTerm: null
 }
 
 handleImageError = (event) => {
   event.target.src = 'http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/standard_fantastic.jpg'
 }
 
+handleSearchTerm = (event) => {
+  this.setState({searchTerm: event.target.value})
+}
+
   render() {
     return (
-      <MainContainer handleImageError={this.handleImageError} heros={this.state.heros} />
+      <MainContainer handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.state.heros} />
     )
   }
 
