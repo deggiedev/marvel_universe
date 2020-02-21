@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MainContainer from './containers/MainContainer'
-import './images/Marvel.png'
 
 class App extends Component {
 
@@ -18,13 +17,13 @@ state = {
   heros: []
 }
 
-//addDefaultSrc(event) {
-//  event.target.src = 'Marvel.png'
-//}
+handleImageError = (event) => {
+  event.target.src = 'http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/standard_fantastic.jpg'
+}
 
   render() {
     return (
-      <MainContainer addDefaultSrc={this.addDefaultSrc} heros={this.state.heros} />
+      <MainContainer handleImageError={this.handleImageError} heros={this.state.heros} />
     )
   }
 
