@@ -15,24 +15,24 @@ componentDidMount() {
 
 state = {
   heros: [],
-  searchTerm: null
+  searchTerm: ""
 }
 
 handleImageError = (event) => {
   event.target.src = 'http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/standard_fantastic.jpg'
 }
 
-handleSearchTerm = () => {
-  if (this.state.searchTerm === true) {
-    return this.state.heros.filter(hero => hero.includes(this.state.searchTerm))
+handleSearchTerm = (event) => {
+    this.setState({searchTerm: event.target.value})
+}
+
+filterSearchTerm = () => {
+  if (this.state.searchTerm) {
+    return this.state.heros.filter(hero => hero.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
   }
   else {
     return this.state.heros
   }
-}
-
-filterSearchTerm = () => {
-  this.setState({})
 }
 
   render() {
