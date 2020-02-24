@@ -6,7 +6,7 @@ const CardComponent = (props) => {
     
     return (
         <Box px={2} py={2} width={1/4}>
-            <Card className="Card">
+            <Card className="Card" onClick={() => props.handleClick(props.hero) }>
                 <Image onError={props.handleImageError} className="Image" src={`${props.hero.thumbnail.path}/standard_fantastic.jpg`}/>
                 <Heading fontFamily='Masked Marvel'>{props.hero.name}</Heading>
             </Card>
