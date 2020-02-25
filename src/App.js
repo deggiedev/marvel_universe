@@ -4,18 +4,26 @@ import MainContainer from './containers/MainContainer'
 class App extends Component {
 
 getCharacters = () => {
-  return fetch('http://gateway.marvel.com/v1/public/characters?limit=100&ts=thesoer&apikey=50ad78c230f43edadebb63d4fe32f1f7&hash=b9d2938b56f1f57559b592329b254b28')
+  return fetch(`http://gateway.marvel.com/v1/public/characters?limit=100&offset=${this.state.heroCount}&ts=thesoer&apikey=50ad78c230f43edadebb63d4fe32f1f7&hash=b9d2938b56f1f57559b592329b254b28`)
   .then(resp => resp.json())
 }
 
 componentDidMount() {
   this.getCharacters()
-  .then(heros => this.setState({ heros: heros.data.results }))
+  .then(heros => this.setState({heros: heros.data.results}))
+}
+
+componentDidUpdate(prevState) {
+  if (this.state.heroCount !== prevState.heroCount) {
+    this.getCharacters()
+    .then(heros => this.setState({heros: heros.data.results}))
+  }
 }
 
 state = {
   heros: [],
-  searchTerm: ""
+  searchTerm: "",
+  heroCount: 0
 }
 
 handleImageError = (event) => {
@@ -26,7 +34,7 @@ handleSearchTerm = (event) => {
     this.setState({searchTerm: event.target.value})
 }
 
-filterSearchTerm = () => {
+filterHeros = () => {
   if (this.state.searchTerm) {
     return this.state.heros.filter(hero => hero.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
   }
@@ -35,9 +43,13 @@ filterSearchTerm = () => {
   }
 }
 
+handlePagination = () => {
+  this.setState({heroCount: this.state.heroCount +100})
+}
+
   render() {
     return (
-      <MainContainer handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.filterSearchTerm()} />
+      <MainContainer handlePagination={this.handlePagination} handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.filterHeros()} />
     )
   }
 
