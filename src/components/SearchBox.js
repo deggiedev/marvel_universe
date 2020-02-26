@@ -19,7 +19,7 @@ const SearchBox = (props) => {
                         placeholder='Avengers...'/>
                 </Box>
                 <Box pl={3} width={100}>
-                    <Select
+                    <Select onChange={(event) => props.handleDropdownOption(event)}
                         id='alphabet'
                         name='alphabet'
                         defaultValue='a'>
