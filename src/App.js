@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MainContainer from './containers/MainContainer'
+import MarvelComicsImage from './images/marvel_comics_2.jpg'
 
 class App extends Component {
 
@@ -7,7 +8,7 @@ class App extends Component {
     heros: [],
     searchTerm: "",
     dropdownOption: 'a',
-    sideOfCard: null
+    sideOfCard: true
   }
 
 componentDidMount() {
@@ -34,7 +35,7 @@ getCharacters = () => {
 }
 
 handleImageError = (event) => {
-  event.target.src = 'http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/standard_fantastic.jpg'
+  event.target.src = MarvelComicsImage
 }
 
 handleSearchTerm = (event) => {
