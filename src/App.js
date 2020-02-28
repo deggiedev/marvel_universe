@@ -8,13 +8,13 @@ class App extends Component {
     heros: [],
     searchTerm: "",
     dropdownOption: 'a',
-    heroNames: []
+    heroNames: [],
+    selectedHeroStats: []
   }
 
 componentDidMount() {
   this.getCharacters()
   .then(heros => this.setState({heros: heros.data.results}))
-  //.then(this.getPowerStats())
   }
 
 componentDidUpdate(prevProps, prevState) {
@@ -30,10 +30,11 @@ getCharacters = () => {
   .then(resp => resp.json())
 }
 
-//getPowerStats = () => {
-  //return fetch(`https://superheroapi.com/api/10158112178385127/search/${HeroName}`)
-//} fetch hero stats based on hero name. callback function triggerd by onClick which has been passed a hero object. This initiates the correct fetch.
-
+getHeroStats = (hero) => {
+    return fetch(`https://superheroapi.com/api/10158112178385127/search/${hero.name.toLowerCase()}`)
+    .then(resp => resp.json())
+    .then(herostats => this.setState({selectedHeroStats: herostats.results}))
+} //fetch blocked by CORS policy???
 
 handleImageError = (event) => {
   event.target.src = MarvelComicsImage
@@ -59,7 +60,7 @@ filterHeros = () => {
   render() {
     return (
       <>
-        <MainContainer handleDropdownOption={this.handleDropdownOption} handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.filterHeros()} />
+        <MainContainer getHeroStats={this.getHeroStats} handleDropdownOption={this.handleDropdownOption} handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.filterHeros()} />
       </>
     )
   }
