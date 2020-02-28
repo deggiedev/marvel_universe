@@ -8,24 +8,20 @@ class App extends Component {
     heros: [],
     searchTerm: "",
     dropdownOption: 'a',
-    sideOfCard: true
+    heroNames: []
   }
 
 componentDidMount() {
-  setTimeout(() => {
   this.getCharacters()
   .then(heros => this.setState({heros: heros.data.results}))
-  .then(this.setState({ done: true }));
-  }, 1200);
+  //.then(this.getPowerStats())
   }
 
 componentDidUpdate(prevProps, prevState) {
   if (prevState.dropdownOption !== this.state.dropdownOption) {
-    setTimeout(() => {
       this.getCharacters()
       .then(heros => this.setState({heros: heros.data.results}))
-      .then(this.setState({ done: true }));
-      }, 1200);
+      .then(this.setState({ done: true }));   
   } else {}
 }
 
@@ -33,6 +29,11 @@ getCharacters = () => {
   return fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${this.state.dropdownOption}&limit=100&ts=thesoer&apikey=50ad78c230f43edadebb63d4fe32f1f7&hash=b9d2938b56f1f57559b592329b254b28`)
   .then(resp => resp.json())
 }
+
+//getPowerStats = () => {
+  //return fetch(`https://superheroapi.com/api/10158112178385127/search/${HeroName}`)
+//} fetch hero stats based on hero name. callback function triggerd by onClick which has been passed a hero object. This initiates the correct fetch.
+
 
 handleImageError = (event) => {
   event.target.src = MarvelComicsImage
@@ -44,10 +45,6 @@ handleSearchTerm = (event) => {
 
 handleDropdownOption = (event) => {
   this.setState({dropdownOption: event.target.value})
-}
-
-flipCardSide = () => {
-  this.setState({sideOfCard: !this.state.sideOfCard})
 }
 
 filterHeros = () => {
@@ -62,7 +59,7 @@ filterHeros = () => {
   render() {
     return (
       <>
-        <MainContainer sideOfCard={this.state.sideOfCard} flipCardSide={this.flipCardSide} handleDropdownOption={this.handleDropdownOption} handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.filterHeros()} />
+        <MainContainer handleDropdownOption={this.handleDropdownOption} handleSearchTerm={this.handleSearchTerm} handleImageError={this.handleImageError} heros={this.filterHeros()} />
       </>
     )
   }

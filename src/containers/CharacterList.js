@@ -6,7 +6,7 @@ import './CharacterList.css'
 const CharacterList = (props) => {
     return (
         <Flex flexWrap='wrap'>
-            {props.heros.map((hero, key) => <CardComponent sideOfCard={props.sideOfCard} handleClick={props.flipCardSide} handleImageError={props.handleImageError} key={key} hero={hero} />)}
+            {props.heros.map((hero, key) => <CardComponent handleImageError={props.handleImageError} key={key} hero={hero} />)}
         </Flex>
     )
 }

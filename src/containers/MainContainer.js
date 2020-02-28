@@ -9,7 +9,7 @@ const MainContainer = (props) => {
         <>
             <Header />
             <SearchBox handleDropdownOption={props.handleDropdownOption} handleSearchTerm={props.handleSearchTerm} />
-            <CharacterList sideOfCard={props.sideOfCard} flipCardSide={props.flipCardSide} handleSearchTerm={props.handleSearchTerm} handleImageError={props.handleImageError} className="CharacterList" heros={props.heros}/>
+            <CharacterList  handleSearchTerm={props.handleSearchTerm} handleImageError={props.handleImageError} className="CharacterList" heros={props.heros}/>
         </>
     )
 }
